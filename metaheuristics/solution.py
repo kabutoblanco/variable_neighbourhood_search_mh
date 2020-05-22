@@ -5,10 +5,10 @@ class Solution:
     def initial_random(self, random):
         pass
 
-    def tweak(self, random, pm, ratio):
+    def tweak_base(self, random, pm, ratio):
         pass
 
-    def tweak(self, random, pm, dh, change_attr):
+    def tweak_dh(self, random, pm, dh, change_attr):
         pass
 
     def evaluate(self):
