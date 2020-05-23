@@ -1,9 +1,33 @@
+from .variable import Variable
+from data.file import File
+
 class Knapsack:
     def __init__(self, file_name):
-        pass
+        self.total_items = 0
+        self.capacity = 0.0
+        self.optimal_know = 0.0
+        self.variables = []
+        self.load_data(file_name)
 
-    def load_data(self):
-        pass
+    def load_data(self, file_name):
+        file = File(file_name)
+        file.read()
+        self.total_items = file.get_total_items()
+        self.capacity = file.get_capacity()
+        self.optimal_know = file.get_optimal_know()
+        i = 0
+        for variable in file.get_items():
+            v = Variable(i, variable[0], variable[1])
+            self.variables.append(v)
+            i += 1
 
-    def evaluate(self, dimensions):
-        pass
+    def evaluate(self, dimensions):        
+        sum = 0
+        i = 0
+        for variable in self.variables:
+            sum += dimensions[i] * variable.value
+            i += 1
+        return sum
+
+    def get_weight(self, index):
+        return self.variables[index].weight
