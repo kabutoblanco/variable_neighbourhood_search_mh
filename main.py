@@ -1,14 +1,15 @@
 from data.file import File
 from problem.knapsack import Knapsack
+from metaheuristics.solution import Solution
 
+import random
 
 def main():
     k = Knapsack("./data/datos.txt")
-    l = [0] * 10
-    l[3] = 1
-    l[5] = 1
-    print(l)
-    print(k.get_weight(3))
+    s = Solution(k, None)
+    r = random
+    s.initial_random(r)
+    print(s.dimensions)
 
 
 if __name__ == "__main__":

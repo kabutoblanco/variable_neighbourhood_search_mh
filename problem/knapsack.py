@@ -12,11 +12,11 @@ class Knapsack:
     def load_data(self, file_name):
         file = File(file_name)
         file.read()
-        self.total_items = file.get_total_items()
-        self.capacity = file.get_capacity()
-        self.optimal_know = file.get_optimal_know()
+        self.total_items = file.total_items
+        self.capacity = file.capacity
+        self.optimal_know = file.optimal_know
         i = 0
-        for variable in file.get_items():
+        for variable in file.items:
             v = Variable(i, variable[0], variable[1])
             self.variables.append(v)
             i += 1

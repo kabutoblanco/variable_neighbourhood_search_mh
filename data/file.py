@@ -16,15 +16,3 @@ class File:
                 self.items.append([int(sp[0]), int(sp[1])])
             self.optimal_know = int(archivo.readline())
             opt = archivo.readline().split(" ")
-
-    def get_total_items(self):
-        return self.total_items
-
-    def get_capacity(self):
-        return self.capacity
-
-    def get_optimal_know(self):
-        return self.optimal_know
-
-    def get_items(self):
-        return self.items
