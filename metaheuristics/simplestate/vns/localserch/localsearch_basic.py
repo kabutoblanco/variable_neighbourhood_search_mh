@@ -1,8 +1,11 @@
 from .localsearch import Localsearch
 
 class LocalsearchBasic(Localsearch):
-    def __init__(self):
-        Localsearch.__init__(self)
-
+    
     def execute(self, obj_neighborhood):
-        pass
+        #generate neighborhood
+        ##initial solution
+        s = self.solution.getSolution()
+        print(s)
+        for r in range (0,4):
+            pass

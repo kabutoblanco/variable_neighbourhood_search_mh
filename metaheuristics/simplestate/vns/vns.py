@@ -20,4 +20,6 @@ class VNS(Algorithm):
         while self.efos < self.max_efos:
             k = 0
             while k < self.k_max:
+                ##launch ls class
+                
                 s.tweak(random, self.neighborhoods[k].pm, self.neighborhoods[k].dh, self.neighborhoods[k].change_attr)
