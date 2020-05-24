@@ -11,7 +11,6 @@ class HillclimbingClassic(Algorithm):
 
     def execute(self, obj_knapsack, random):
         self.efos = 0
-
         s = Solution(obj_knapsack)
         s.initial_random(random)
 
