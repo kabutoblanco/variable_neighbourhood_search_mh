@@ -9,20 +9,15 @@ class HillclimbingClassic(Algorithm):
         self.pm = 0.5
         self.ratio = 4
 
-    def execute(self, obj_knapsack, random):
+    def execute(self, solution):
         self.efos = 0
-        s = Solution(obj_knapsack)
-        s.initial_random(random)
+        s = copy.copy(solution)
 
         while self.efos < self.max_efos:
             r = copy.deepcopy(s)
-            r.tweak(random, self.pm, self.ratio, 0)
-
+            temp = r.tweak(self.pm, self.ratio)
+            r.set_values([temp,r.evaluate(temp)])
             if (r.fitness > s.fitness):
                 s = r
             self.efos += 1
-
         self.best_solution = s
-        print(self.best_solution.dimensions)
-        print(self.best_solution.fitness)
-        print(self.best_solution.weight)

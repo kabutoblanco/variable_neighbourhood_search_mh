@@ -1,64 +1,51 @@
 import random
+import copy
 
 class Solution:
+    
     def __init__(self, obj_knapsack):
-        self.weight = 0
         self.fitness = 0
         self.obj_knapsack = obj_knapsack
         self.dimensions = [0] * obj_knapsack.total_items
-        random.seed(30)
-
-    def initial_random(self, random):
-        self.weight = 0
-        while True:
-            index = random.randint(0, self.dimensions.__len__() - 1)
-            if random.random() < 0.5:
-                self.dimensions[index] = int(not self.dimensions[index])
-                if self.dimensions[index] == 1:
-                    self.weight += self.obj_knapsack.get_weight(index)
-                    if self.weight > self.obj_knapsack.capacity:
-                        self.dimensions[index] = 0
-                        self.weight -= self.obj_knapsack.get_weight(index)
-                        break
-                else:
-                    self.weight -= self.obj_knapsack.get_weight(index)
-        self.evaluate()
-
-    def tweak(self, random, pm, dh, change_attr):
-        checks = []
-
-        while checks.__len__() <= dh:
-            if random.random() < pm:
-                index = random.randint(0, self.dimensions.__len__() - 1)
-                if index not in checks:
-                    checks.append(index)
-                    self.dimensions[index] = int(not self.dimensions[index])
-                    if self.dimensions[index] == 1:
-                        self.weight += self.obj_knapsack.get_weight(index)
-                        if self.weight > self.obj_knapsack.capacity:
-                            self.dimensions[index] = 0
-                            self.weight -= self.obj_knapsack.get_weight(index)
-                            checks.remove(index)
-                    else:
-                        self.weight -= self.obj_knapsack.get_weight(index)
-        self.evaluate()
-
-    def evaluate(self):
-        self.fitness = self.obj_knapsack.evaluate(self.dimensions)
 
     def getSolution(self):
         solution = self._getEmptySolution()
         while(True):
             randIndex = random.randint(0, self.obj_knapsack.total_items -1)
-            solution[randIndex] = random.randint(0, 1)
-            if(self._validateSolution(solution)):
+            if(self._validateSolution(solution,randIndex)):
                 solution[randIndex]=0
                 break
+            else:
+                solution[randIndex]=1
+        self.dimensions = solution
+        self.fitness = self.evaluate(self.dimensions)
+
+    def tweak(self, pm, dh):
+        shift = []
+        solution = copy.copy(self.dimensions)
+        while len(shift) < dh:
+            index = random.randint(0, len(solution)-1)
+            if index not in shift:
+                if (random.random() > pm):
+                    if(not self._validateSolution(solution,index)):
+                        if(solution[index]==0): solution[index] = 1
+                        else: solution[index] = 0
+                        shift.append(index)
+        #shift.sort()                    
+        #print(str(shift))
         return solution
+
+    def evaluate(self,dimensions):
+        return self.obj_knapsack.evaluate(dimensions)
     
-    def _validateSolution(self, solution):
+    def _validateSolution(self, s, index):
         count = 0
         ret = False
+        solution = copy.copy(s)
+        if solution[index] == 1:
+            solution[index] = 0
+        else:
+            solution[index] = 1
         for x in range(0, self.obj_knapsack.total_items):
             if solution[x] == 1:
                 count+= self.obj_knapsack.variables[x].weight
@@ -71,3 +58,7 @@ class Solution:
         for x in range(0, self.obj_knapsack.total_items):
             ret.append(0)
         return ret
+
+    def set_values(self,values):
+        self.dimensions = values[0]
+        self.fitness = values[1]

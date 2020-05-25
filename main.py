@@ -15,13 +15,15 @@ def main():
     #r = random
     #hc = HillclimbingClassic()
     #hc.execute(k, r)
+    random.seed(33)
     k = Knapsack("./data/datos.txt")
     s = Solution(k)
-    n = Neighborhood(0.5,2,3)
+    s.getSolution()
+    n = Neighborhood(0.5,1,4)
     a = HillclimbingClassic()
     l = LocalsearchBasic(s,a)
     l.execute(n)
     
-
+    
 if __name__ == "__main__":
     main()
