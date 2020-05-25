@@ -1,6 +1,7 @@
 from ..algorithm import Algorithm
 from ...solution import Solution
 import copy
+import random
 
 
 class HillclimbingClassic(Algorithm):
@@ -9,15 +10,22 @@ class HillclimbingClassic(Algorithm):
         self.pm = 0.5
         self.ratio = 4
 
-    def execute(self, solution):
+    def execute(self, obj_knapsack, obj_solution):
         self.efos = 0
-        s = copy.copy(solution)
+
+        if not obj_solution:
+            s = Solution(obj_knapsack)
+            s.get_solution()
+        else:
+            s = copy.deepcopy(obj_solution)
 
         while self.efos < self.max_efos:
             r = copy.deepcopy(s)
-            temp = r.tweak(self.pm, self.ratio)
-            r.set_values([temp,r.evaluate(temp)])
-            if (r.fitness > s.fitness):
+            r.tweak(self.pm, self.ratio)
+        
+            if r.fitness > s.fitness:
                 s = r
             self.efos += 1
+
+        
         self.best_solution = s

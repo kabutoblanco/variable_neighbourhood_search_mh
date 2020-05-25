@@ -2,7 +2,7 @@ from abc import ABC
 
 class Localsearch(ABC):
 
-    def __init__(self,solution, algorithm):
+    def __init__(self, solution, algorithm):
         """Do the local search on vns base algorithm
 
         Parameters:
@@ -17,6 +17,3 @@ class Localsearch(ABC):
 
     def execute(self, obj_neighborhood):
         raise NotImplementedError
-
-    def doSomething(self):
-        pass
