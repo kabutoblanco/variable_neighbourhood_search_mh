@@ -6,8 +6,8 @@ from metaheuristics.simplestate.vns.neighborhood import Neighborhood
 import random
 
 def main():
-    k = Knapsack("./data/files/f3.txt")
-    vns = VNS(2)
+    k = Knapsack("./data/files/f1.txt")
+    vns = VNS(4)
     vns.execute(k)
     print(vns.best_solution)
     print(vns.best_solution.fitness)

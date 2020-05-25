@@ -1,8 +1,15 @@
 from .localsearch import Localsearch
+from ....solution import Solution
+import random
+import copy
 
 class LocalsearchDesc(Localsearch):
-    def __init__(self):
-        pass
-
+    
     def execute(self, obj_neighborhood):
-        pass
+        s = copy.deepcopy(self.solution)
+
+        #  Selección aleatoria (S’) del vecindario actual (Nk) de S
+        obj_neighborhood.execute(s)
+        s_prima = obj_neighborhood.best_neighbors()
+        
+        return s_prima

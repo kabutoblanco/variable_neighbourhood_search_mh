@@ -3,6 +3,7 @@ from .neighborhood import Neighborhood
 from ...solution import Solution
 from ..hillclimbing.hillclimbing_classic import HillclimbingClassic
 from .localserch.localsearch_basic import LocalsearchBasic
+from .localserch.localsearch_desc import LocalsearchDesc
 
 import random
 
@@ -23,7 +24,7 @@ class VNS(Algorithm):
 
         k = 0
         while k < self.k_max:
-            obj_searchlocal = LocalsearchBasic(s, HillclimbingClassic())
+            obj_searchlocal = LocalsearchDesc(s, HillclimbingClassic())
             s_prima2 = obj_searchlocal.execute(self.neighborhoods[k])
             
             if s_prima2.fitness > s.fitness:
