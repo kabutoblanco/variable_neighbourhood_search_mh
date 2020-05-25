@@ -35,12 +35,19 @@ class Solution:
                     self.dimensions[index] = int(not self.dimensions[index])
                     if self.dimensions[index] == 1:
                         self.weight += self.obj_knapsack.get_weight(index)
+                        if self.weight > self.obj_knapsack.capacity and len(checks) == dh:
+                            self.dimensions[index] = 0
+                            self.weight -= self.obj_knapsack.get_weight(index)
+                            checks.remove(index)
+                            break
                         if self.weight > self.obj_knapsack.capacity:
                             self.dimensions[index] = 0
                             self.weight -= self.obj_knapsack.get_weight(index)
                             checks.remove(index)
                     else:
                         self.weight -= self.obj_knapsack.get_weight(index)
+                print(self.dimensions)
+                print(checks)
         self.evaluate()
 
     def evaluate(self):
