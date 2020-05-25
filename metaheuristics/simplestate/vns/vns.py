@@ -23,8 +23,6 @@ class VNS(Algorithm):
 
         k = 0
         while k < self.k_max:
-            hc = HillclimbingClassic()
-            hc.max_efos = 5
             obj_searchlocal = LocalsearchBasic(s, HillclimbingClassic())
             s_prima2 = obj_searchlocal.execute(self.neighborhoods[k])
             
