@@ -14,8 +14,10 @@ class LocalsearchBasic(Localsearch):
         s_prima = obj_neighborhood.neighborhood[rand_index]
         
         # Búsqueda local
+
+        s_prima.obj_algorithm = self.algorithm
         s_prima.obj_algorithm.efos = 0
-        self.algorithm.execute(s.obj_knapsack, s_prima)
+        self.algorithm.execute(s.obj_knapsack, s_prima)        
         s_prima2 = self.algorithm.best_solution
 
         return s_prima2

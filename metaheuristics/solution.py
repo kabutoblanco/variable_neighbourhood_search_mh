@@ -22,11 +22,11 @@ class Solution:
                 self.dimensions[index] = int(not self.dimensions[index])
                 if self.dimensions[index] == 1:
                     self.weight += self.obj_knapsack.get_weight(index)
+                    if self.weight == self.obj_knapsack.capacity:
+                        break
                     if self.weight > self.obj_knapsack.capacity:
                         self.dimensions[index] = 0
                         self.weight -= self.obj_knapsack.get_weight(index)
-                        break
-                    if self.weight == self.obj_knapsack.capacity:
                         break
                 else:
                     self.weight -= self.obj_knapsack.get_weight(index)

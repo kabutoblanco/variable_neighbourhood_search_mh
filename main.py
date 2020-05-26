@@ -7,13 +7,15 @@ from utils.statistics import Statistics
 from data.export import Export
 
 import copy
+import math
 import random
 
 def main():
     ITER_MAX = 30
     list_statistics = []
     e = Export(list_statistics)
-    for i in range(10, 17):
+    for i in range(1, 17):
+        random.seed(i)
         name_file = ""
         if i < 11:
             name_file = "./data/files/f{}.txt".format(i)
@@ -23,14 +25,13 @@ def main():
         k = Knapsack(name_file)
         hcc = HillclimbingClassic()
         hcm = RandomSearch()
-        vns = VNS(random.randint(2, int(k.total_items / 2 + 1)))
-        algorithms = []
-        algorithms.append(vns)
+        vns = VNS(random.randint(2, int(math.log(k.total_items) + 1)))
+        algorithms = []        
         algorithms.append(hcm)
-        algorithms.append(hcc)        
-        
-        hcc.max_efos = 1000
-        hcm.max_efos = 1000
+        algorithms.append(hcc)   
+        algorithms.append(vns)             
+        hcm.max_efos = 1000    
+        hcc.max_efos = 1000            
         vns.max_efos = 1000
         information = [0] * 2
         sublist_statistics = [0] * len(algorithms)
@@ -38,8 +39,7 @@ def main():
         j = 0
         for algorithm in algorithms:
             vector = []
-            successfull_count = 0
-            random.seed(i)
+            successfull_count = 0            
             for l in range(ITER_MAX):
                 algorithm.execute(k, None)
                 vector.append(algorithm.best_solution.fitness)
