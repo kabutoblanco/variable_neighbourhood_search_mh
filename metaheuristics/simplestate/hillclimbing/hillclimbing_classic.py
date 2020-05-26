@@ -19,7 +19,7 @@ class HillclimbingClassic(Algorithm):
         else:
             s = copy.deepcopy(obj_solution)
 
-        while self.efos < self.max_efos:
+        while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know:
             r = copy.deepcopy(s)
             r.tweak(self.pm, self.ratio)
         
@@ -27,6 +27,8 @@ class HillclimbingClassic(Algorithm):
                 s = r
             self.efos += 1
 
+            if s.fitness == obj_knapsack.optimal_know:
+                self.successfull = True
         
         self.best_solution = s
 

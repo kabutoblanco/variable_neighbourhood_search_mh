@@ -4,6 +4,7 @@ class Algorithm(ABC):
     def __init__(self):
         self.efos = 0
         self.max_efos = 100
+        self.successfull = False
         self.best_solution = None
 
     def execute(self, obj_knapsack, obj_solution):

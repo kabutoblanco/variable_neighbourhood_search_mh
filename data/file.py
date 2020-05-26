@@ -12,7 +12,7 @@ class File:
             self.total_items = int(first_line[0])
             self.capacity = int(first_line[1])
             for i in range(0, self.total_items):
-                sp = archivo.readline().split(" ")
-                self.items.append([int(sp[0]), int(sp[1])])
-            self.optimal_know = int(archivo.readline())
+                sp = archivo.readline().replace(',', '.').split(" ")
+                self.items.append([float(sp[0]), float(sp[1])])
+            self.optimal_know = float(archivo.readline().replace(',', '.'))
             opt = archivo.readline().split(" ")

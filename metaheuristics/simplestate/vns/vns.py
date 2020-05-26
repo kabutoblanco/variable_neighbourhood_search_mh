@@ -23,7 +23,7 @@ class VNS(Algorithm):
         s.get_solution()
 
         k = 0
-        while k < self.k_max:
+        while k < self.k_max and s.fitness != obj_knapsack.optimal_know:
             obj_searchlocal = LocalsearchBasic(s, HillclimbingClassic())
             s_prima2 = obj_searchlocal.execute(self.neighborhoods[k])
             
@@ -32,6 +32,11 @@ class VNS(Algorithm):
                 k = 0
             else:
                 k += 1
+
+            if s.fitness == obj_knapsack.optimal_know:
+                self.successfull = True
+
+            self.efos += 1
         
         self.best_solution = s
 
