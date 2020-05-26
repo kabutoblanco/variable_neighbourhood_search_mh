@@ -3,14 +3,15 @@ from metaheuristics.simplestate.hillclimbing.hillclimbing_classic import Hillcli
 from metaheuristics.simplestate.hillclimbing.random_search import RandomSearch
 from metaheuristics.simplestate.vns.vns import VNS
 from utils.statistics import Statistics
+from data.export import Export
 
 import copy
 import random
 
 def main():
-    ITER_MAX = 30
+    ITER_MAX = 10
     list_statistics = []
-    
+    e = Export(list_statistics)
     for i in range(1, 10):
         name_file = "./data/files/f{}.txt".format(i)
         statistics = Statistics(name_file, i, ITER_MAX)
@@ -47,7 +48,8 @@ def main():
             print("Promedio: {}".format(statistics.average()))
             print("Desviación: {}".format(statistics.std()))
             print("Tasa de exito: {}".format(statistics.successfull_rate()))
-        list_statistics.append(copy.deepcopy(sublist_statistics))
+        list_statistics.append(copy.deepcopy(sublist_statistics)) 
+    e.write()
     
 if __name__ == "__main__":
     main()
