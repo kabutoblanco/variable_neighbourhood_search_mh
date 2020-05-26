@@ -50,6 +50,7 @@ def main():
             print("Tasa de exito: {}".format(statistics.successfull_rate()))
         list_statistics.append(copy.deepcopy(sublist_statistics)) 
     e.writeCSV()
+    e.writeHTML()
     
 if __name__ == "__main__":
     main()
