@@ -5,7 +5,7 @@ import time
 class Export:
 
     def __init__(self,statistics):
-        self.filename = "./data/exports/dataExport.csv"
+        self.filename = "./exports/dataExport.csv"
         self.statistics = statistics
         
     def writeCSV(self):
