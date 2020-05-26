@@ -24,7 +24,7 @@ class VNS(Algorithm):
 
         k = 0
         while k < self.k_max:
-            obj_searchlocal = LocalsearchDesc(s, HillclimbingClassic())
+            obj_searchlocal = LocalsearchBasic(s, HillclimbingClassic())
             s_prima2 = obj_searchlocal.execute(self.neighborhoods[k])
             
             if s_prima2.fitness > s.fitness:

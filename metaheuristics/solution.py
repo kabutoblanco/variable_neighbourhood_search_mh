@@ -26,28 +26,27 @@ class Solution:
 
     def tweak(self, pm, dh):
         checks = []
+        dimensions = copy.copy(self.dimensions)
 
         while len(checks) < dh:
             if random.random() < pm:
                 index = random.randint(0, len(self.dimensions) - 1)
                 if index not in checks:
-                    checks.append(index)
                     self.dimensions[index] = int(not self.dimensions[index])
+                    checks.append(index)
                     if self.dimensions[index] == 1:
                         self.weight += self.obj_knapsack.get_weight(index)
-                        if self.weight > self.obj_knapsack.capacity and len(checks) == dh:
-                            self.dimensions[index] = 0
-                            self.weight -= self.obj_knapsack.get_weight(index)
-                            checks.remove(index)
-                            break
+                        weight = copy.copy(self.weight)
                         if self.weight > self.obj_knapsack.capacity:
                             self.dimensions[index] = 0
-                            self.weight -= self.obj_knapsack.get_weight(index)
+                            self.weight -= self.obj_knapsack.get_weight(index)                            
                             checks.remove(index)
+                        if weight > self.obj_knapsack.capacity and 1 not in dimensions:
+                            break
                     else:
                         self.weight -= self.obj_knapsack.get_weight(index)
-                print(self.dimensions)
-                print(checks)
+                        dimensions[index] = 0
+
         self.evaluate()
 
     def evaluate(self):
