@@ -1,5 +1,3 @@
-import copy
-
 class Neighborhood:
     def __init__(self, pm, dh, size):
         self.pm = pm
@@ -9,7 +7,7 @@ class Neighborhood:
 
     def execute(self, s):
         for i in range(0, self.size):
-            r = copy.deepcopy(s)
+            r = s.copy()
             r.tweak(self.pm, self.dh)
             self.neighborhood.append(r)
 
@@ -18,6 +16,6 @@ class Neighborhood:
 
         for neighbor in self.neighborhood:
             if neighbor.fitness > best.fitness:
-                best = copy.deepcopy(neighbor)
+                best = neighbor.copy()
         
         return best

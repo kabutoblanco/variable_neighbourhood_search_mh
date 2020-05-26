@@ -10,11 +10,11 @@ class RandomSearch(Algorithm):
 
     def execute(self, obj_knapsack, obj_solution):
         self.efos = 0
-        self.best_solution = Solution(obj_knapsack)
+        self.best_solution = Solution(obj_knapsack, self)
         self.best_solution.get_solution()
 
         while self.efos < self.max_efos and self.best_solution.fitness != obj_knapsack.optimal_know:
-            r = copy.deepcopy(self.best_solution)
+            r = self.best_solution.copy()
             r.get_solution()
 
             if r.fitness > self.best_solution.fitness:
@@ -22,7 +22,7 @@ class RandomSearch(Algorithm):
 
             if self.best_solution.fitness == obj_knapsack.optimal_know:
                 self.successfull = True
-
+            
             self.efos += 1
 
     def __str__(self):

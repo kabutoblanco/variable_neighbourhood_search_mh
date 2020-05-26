@@ -1,6 +1,6 @@
 from ..algorithm import Algorithm
 from ...solution import Solution
-import copy
+
 import random
 
 
@@ -15,32 +15,29 @@ class HillclimbingMaxslope(Algorithm):
         self.efos = 0
 
         if not obj_solution:
-            s = Solution(obj_knapsack)
+            s = Solution(obj_knapsack, self)
             s.get_solution()
         else:
-            s = copy.deepcopy(obj_solution)
+            s = obj_solution.copy()
 
         while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know:
-            r = copy.deepcopy(s)
+            r = s.copy()
             r.tweak(self.pm, self.ratio)
 
             for v in range(self.neighborhood - 1):
-                w = copy.deepcopy(s)
+                w = s.copy()
                 w.tweak(self.pm, self.ratio)
 
                 if w.fitness > r.fitness:
                     r = w
                 if self.efos >= self.max_efos and s.fitness != obj_knapsack.optimal_know:
                     break
-                self.efos += 1
 
             if r.fitness > s.fitness:
                 s = r
 
             if s.fitness == obj_knapsack.optimal_know:
                 self.successfull = True
-
-            self.efos += 1
 
         self.best_solution = s
 
