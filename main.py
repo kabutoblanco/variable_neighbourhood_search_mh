@@ -9,11 +9,15 @@ import copy
 import random
 
 def main():
-    ITER_MAX = 10
+    ITER_MAX = 30
     list_statistics = []
     e = Export(list_statistics)
-    for i in range(1, 10):
-        name_file = "./data/files/f{}.txt".format(i)
+    for i in range(1, 17):
+        name_file = ""
+        if i < 11:
+            name_file = "./data/files/f{}.txt".format(i)
+        else:
+            name_file = "./data/files/Knapsack{}.txt".format(i - 10)
         statistics = Statistics(name_file, i, ITER_MAX)
         k = Knapsack(name_file)
         hcc = HillclimbingClassic()
