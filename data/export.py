@@ -43,13 +43,16 @@ class Export:
         hs.write(html)
 
     def _createRow(self, obj):
-
-        name = obj[0].name_file
+        path = obj[0].name_file.split("/")
+        name = path[len(path)-1]
         data = []
         for r in obj:
             media = r.average()
             std = r.std()
             succ = r.successfull_rate()
             data.append([media,std,succ])
-        st = '{}                {}                {}                {}'.format(name,data[0],data[1],data[2])
+        for n in range(0,len(data)-1):
+            for g in range(0, len(data[0])-1):
+                data[n][g] = round(data[n][g],2)
+        st = '{}            {}                {}                {}'.format(name,data[0],data[1],data[2])
         return st
