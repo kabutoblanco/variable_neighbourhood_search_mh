@@ -5,7 +5,7 @@ import time
 class Export:
 
     def __init__(self,statistics):
-        self.filename = "./exports/dataExport.csv"
+        self.filename = "./data/exports/record_{}_{}.csv".format(time.strftime("%d_%m_%y"), time.strftime("%H_%M"))
         self.statistics = statistics
         
     def writeCSV(self):
@@ -32,13 +32,13 @@ class Export:
         for statistics in self.statistics:
             html += "<tr><td>" + statistics[0].name_file + "</td>"
             for i in range(3):
-                html += "<td class='non-select'><span>" + str(statistics[0].average()) + "</span></td>"
-                html += "<td class='non-select'><span>" + str(statistics[0].std()) + "</span></td>"
-                html += "<td class='non-select'><span>" + str(statistics[0].successfull_rate()) + "</span></td>"
+                html += "<td class='non-select'><span>" + str(round(statistics[i].average(), 3)) + "</span></td>"
+                html += "<td class='non-select'><span>" + str(round(statistics[i].std(), 3)) + "</span></td>"
+                html += "<td class='non-select'><span>" + str(round(statistics[i].successfull_rate(), 3)) + "</span></td>"
             html += "</tr>"
         html += "</tbody></table></div></div></div></body></html>"
 
-        name = "schedules_{}_{}.html".format(time.strftime("%d_%m_%y"), time.strftime("%H_%M"))
+        name = "record_{}_{}.html".format(time.strftime("%d_%m_%y"), time.strftime("%H_%M"))
         hs = open("./data/exports/" + name, 'w')
         hs.write(html)
 

@@ -20,11 +20,11 @@ def main():
         hcm = RandomSearch()
         vns = VNS(random.randint(2, int(k.total_items / 2 + 1)))
         algorithms = []
-        algorithms.append(hcc)
         algorithms.append(hcm)
+        algorithms.append(hcc)        
         algorithms.append(vns)
-        hcc.max_efos = 50
-        hcm.max_efos = 50
+        hcc.max_efos = 1000
+        hcm.max_efos = 1000
         information = [0] * 2
         sublist_statistics = [0] * len(algorithms)
         print(name_file)
@@ -33,23 +33,19 @@ def main():
             vector = []
             successfull_count = 0
             random.seed(i)
-            for i in range(ITER_MAX):
+            for l in range(ITER_MAX):
                 algorithm.execute(k, None)
                 vector.append(algorithm.best_solution.fitness)
-                successfull_count += 1 if algorithm.successfull else False
+                successfull_count += 1 if algorithm.successfull else 0
             information[0] = algorithm.__str__()
             information[1] = vector
             statistics.set_vector(information)
             statistics.successfull_count = successfull_count
-            sublist_statistics[j] = statistics
-            i += 1
+            sublist_statistics[j] = copy.deepcopy(statistics)
             j += 1
-            print(algorithm)
-            print("Promedio: {}".format(statistics.average()))
-            print("Desviación: {}".format(statistics.std()))
-            print("Tasa de exito: {}".format(statistics.successfull_rate()))
         list_statistics.append(copy.deepcopy(sublist_statistics)) 
     e.writeCSV()
+    e.writeHTML()
     
 if __name__ == "__main__":
     main()
