@@ -1,7 +1,5 @@
-from data.file import File
 from problem.knapsack import Knapsack
 from metaheuristics.simplestate.vns.vns import VNS
-from metaheuristics.simplestate.vns.neighborhood import Neighborhood
 
 import random
 
