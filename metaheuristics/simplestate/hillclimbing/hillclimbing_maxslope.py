@@ -6,6 +6,7 @@ import random
 
 class HillclimbingMaxslope(Algorithm):
     def __init__(self):
+        Algorithm.__init__(self)
         self.pm = 0.5
         self.ratio = 4
         self.neighborhood = 5
@@ -21,11 +22,11 @@ class HillclimbingMaxslope(Algorithm):
 
         while self.efos < self.max_efos:
             r = copy.deepcopy(s)
-            r.tweak(self.pm, self.ratio, 0)
+            r.tweak(self.pm, self.ratio)
 
             for v in range(self.neighborhood - 1):
                 w = copy.deepcopy(s)
-                w.tweak(self.pm, self.ratio, 0)
+                w.tweak(self.pm, self.ratio)
 
                 if w.fitness > r.fitness:
                     r = w
@@ -39,6 +40,6 @@ class HillclimbingMaxslope(Algorithm):
             self.efos += 1
 
         self.best_solution = s
-        print(self.best_solution.dimensions)
-        print(self.best_solution.fitness)
-        print(self.best_solution.weight)
+
+    def __str__(self):
+        return "MP MaxSlope"

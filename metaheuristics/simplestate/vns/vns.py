@@ -13,7 +13,7 @@ class VNS(Algorithm):
         self.k_max = k_max
         self.neighborhoods = []
 
-    def execute(self, obj_knapsack):
+    def execute(self, obj_knapsack, obj_solution):
         self.efos = 0
 
         for i in range(self.k_max):
@@ -34,3 +34,6 @@ class VNS(Algorithm):
                 k += 1
         
         self.best_solution = s
+
+    def __str__(self):
+        return "VNS"
