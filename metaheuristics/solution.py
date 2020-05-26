@@ -7,9 +7,9 @@ class Solution:
         self.fitness = 0
         self.obj_knapsack = obj_knapsack
         self.dimensions = [0] * obj_knapsack.total_items
+        self.weight = 0
 
     def get_solution(self):
-        self.weight = 0
         while True:
             index = random.randint(0, len(self.dimensions) - 1)
             if random.random() < 0.5:

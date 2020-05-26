@@ -1,6 +1,6 @@
 from problem.knapsack import Knapsack
 from metaheuristics.simplestate.hillclimbing.hillclimbing_classic import HillclimbingClassic
-from metaheuristics.simplestate.hillclimbing.hillclimbing_maxslope import HillclimbingMaxslope
+from metaheuristics.simplestate.hillclimbing.random_search import RandomSearch
 from metaheuristics.simplestate.vns.vns import VNS
 from utils.statistics import Statistics
 
@@ -15,11 +15,14 @@ def main():
         statistics = Statistics(name_file, i, ITER_MAX)
         k = Knapsack(name_file)
         hcc = HillclimbingClassic()
-        hcm = HillclimbingMaxslope()
+        hcm = RandomSearch()
         vns = VNS(random.randint(2, k.total_items))
-        algorithms = {hcc, hcm, vns}
-        hcc.max_efos = 100
-        hcm.max_efos = 100
+        algorithms = []
+        algorithms.append(hcc)
+        algorithms.append(hcm)
+        algorithms.append(vns)
+        hcc.max_efos = 500
+        hcm.max_efos = 500
         information = [0] * 2
         print(name_file)
         for algorithm in algorithms:
