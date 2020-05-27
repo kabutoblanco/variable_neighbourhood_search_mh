@@ -50,7 +50,7 @@ class Export:
         html += "<tr><td>" + "TOTAL" + "</td>"
         for total in total_average:
             for i in range(3):
-                html += "<td class='non-select'><span>" + str(round(total[i], 3)) + "</span></td>"
+                html += "<td class='non-select special'><span>" + str(round(total[i], 3)) + "</span></td>"
         html += "</tr>"
 
         html += "</tbody></table></div></div></div></body></html>"

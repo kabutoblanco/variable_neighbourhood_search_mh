@@ -18,13 +18,13 @@ class VNS(Algorithm):
 
         checks = []
         while len(checks) < self.k_max:
-            rand_dh = random.randint(1, int(obj_knapsack.total_items / 2) + 1)
+            rand_dh = random.randint(1, int(obj_knapsack.total_items / 3) + 1)
             if rand_dh not in checks:
                 checks.append(rand_dh)
         
         checks = sorted(checks)
         for dh in checks:
-            self.neighborhoods.append(Neighborhood(random.random(), dh, 10))
+            self.neighborhoods.append(Neighborhood(random.random(), dh, 4))
 
         hc = HillclimbingClassic()
         s = Solution(obj_knapsack, self)

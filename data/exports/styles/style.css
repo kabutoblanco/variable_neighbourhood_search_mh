@@ -68,3 +68,8 @@ td {
 thead {
     background: rgba(0, 0, 0, 0.2);
 }
+
+.special {
+    background: rgba(165, 0, 0, 0.2);
+    font-weight: bolder;
+}
