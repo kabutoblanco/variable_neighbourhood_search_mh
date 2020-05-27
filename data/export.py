@@ -23,6 +23,7 @@ class Export:
             writer.writerow([footer])
     
     def writeHTML(self):
+        total_average = self.statistics[0][0].total_average(self.statistics)
         html = "<!DOCTYPE html><html lang='es'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='X-UA-Compatible' content='ie=edge'><link rel='stylesheet' href='./styles/style.css'><title>Algoritmos de Estado Simple</title></head><body>"
         html += "<div class='schedule-container'><div class='schedule-title'><span>Rendimiento</span></div><div class='table-responsive'><div class='schedule-table'><table>"
         html += "<thead><tr><th rowspan='2'>Dataset</th><th colspan='3'>Busqueda aleatoria</th><th colspan='3'>Ascenso a la colina</th><th colspan='3'>VNS</th></tr><tr>"
@@ -36,6 +37,12 @@ class Export:
                 html += "<td class='non-select'><span>" + str(round(statistics[i].std(), 3)) + "</span></td>"
                 html += "<td class='non-select'><span>" + str(round(statistics[i].successfull_rate(), 3)) + "</span></td>"
             html += "</tr>"
+        html += "<tr><td>" + "TOTAL" + "</td>"
+        for total in total_average:
+            for i in range(3):
+                html += "<td class='non-select'><span>" + str(round(total[i], 3)) + "</span></td>"
+        html += "</tr>"
+
         html += "</tbody></table></div></div></div></body></html>"
 
         name = "record_{}_{}.html".format(time.strftime("%d_%m_%y"), time.strftime("%H_%M"))

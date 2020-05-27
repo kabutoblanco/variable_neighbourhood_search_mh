@@ -23,3 +23,33 @@ class Statistics:
 
     def successfull_rate(self):
         return self.successfull_count / self.max_rep * 100
+    
+    def total_average(self, statistics):
+        ba = [0] * 3
+        hc = [0] * 3
+        vns = [0] * 3 
+        total = len(statistics)
+        for tr in statistics:
+            for st in tr:
+                if(st.algorithm == "Random search"):
+                    ba[0] += st.average()
+                    ba[1] += st.std()
+                    ba[2] += st.successfull_rate()
+                if(st.algorithm == "MP Clasico"):
+                    hc[0] += st.average()
+                    hc[1] += st.std()
+                    hc[2] += st.successfull_rate()
+                if(st.algorithm == "VNS"):
+                    vns[0] += st.average()
+                    vns[1] += st.std()
+                    vns[2] += st.successfull_rate()
+        for l in range(0,3):
+            ba[l] = ba[l]/total
+            hc[l] = hc[l]/total
+            vns[l] = vns[l]/total
+        return [ba,hc,vns]
+        
+                
+        
+        
+                
