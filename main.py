@@ -33,9 +33,9 @@ def main():
         algorithms.append(hcm)
         algorithms.append(hcc)   
         algorithms.append(vns)             
-        hcm.max_efos = 500  
-        hcc.max_efos = 500           
-        vns.max_efos = 500
+        hcm.max_efos = 1000  
+        hcc.max_efos = 1000           
+        vns.max_efos = 1000
         information = [0] * 2
         sublist_statistics = [0] * len(algorithms)
         print(name_file)
