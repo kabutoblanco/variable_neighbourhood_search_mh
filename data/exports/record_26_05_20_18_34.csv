@@ -1,0 +1,5 @@
+"";"Busqueda aleatoria";"	";"	";"Ascenso a la colina";"	";"	";"Vecindad var"
+"Dataset";"Media";"Desviación";"Tasa de exito";"Media";"Desviación";"Tasa de exito";"Media";"Desviación";"Tasa de exito"
+"./data/files/f1.txt";"295.0";"0.0";"100.0";"292.5";"2.997";"96.667";"267.267";"19.853";"0.0"
+"./data/files/f2.txt";"1006.233";"16.84";"90.0";"985.533";"18.182";"16.667";"856.2";"54.096";"0.0"
+"./data/files/f3.txt";"35.0";"0.0";"100.0";"27.733";"3.454";"0.0";"32.2";"3.361";"100.0"

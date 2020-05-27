@@ -14,6 +14,7 @@ class Localsearch(ABC):
         """
         self.solution = solution
         self.algorithm = algorithm
+        self.efos = 0
 
     def execute(self, obj_neighborhood):
         raise NotImplementedError

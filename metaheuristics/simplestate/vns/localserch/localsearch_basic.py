@@ -19,6 +19,7 @@ class LocalsearchBasic(Localsearch):
         s_prima.obj_algorithm.efos = 0
         self.algorithm.execute(s.obj_knapsack, s_prima)        
         s_prima2 = self.algorithm.best_solution
+        self.efos += s_prima2.obj_algorithm.efos
 
         return s_prima2
             
