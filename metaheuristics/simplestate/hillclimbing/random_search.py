@@ -2,6 +2,7 @@ from ..algorithm import Algorithm
 from ...solution import Solution
 import copy
 import random
+from time import time
 
 
 class RandomSearch(Algorithm):
@@ -9,11 +10,12 @@ class RandomSearch(Algorithm):
         Algorithm.__init__(self)
 
     def execute(self, obj_knapsack, obj_solution):
+        start_time = time()
         self.efos = 0
         self.best_solution = Solution(obj_knapsack, self)
         self.best_solution.get_solution()
 
-        while self.efos < self.max_efos and self.best_solution.fitness != obj_knapsack.optimal_know:
+        while self.efos < self.max_efos and self.best_solution.fitness != obj_knapsack.optimal_know and time() - start_time < 0.5:
             r = self.best_solution.copy()
             r.get_solution()
 

@@ -2,6 +2,7 @@ from ..algorithm import Algorithm
 from ...solution import Solution
 import copy
 import random
+from time import time
 
 
 class HillclimbingClassic(Algorithm):
@@ -11,6 +12,7 @@ class HillclimbingClassic(Algorithm):
         self.ratio = 4
 
     def execute(self, obj_knapsack, obj_solution):
+        start_time = time()
         self.efos = 0
 
         if not obj_solution:
@@ -19,7 +21,7 @@ class HillclimbingClassic(Algorithm):
         else:
             s = obj_solution.copy()
 
-        while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know:
+        while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know and time() - start_time < 0.5:
             r = s.copy()
             r.tweak(self.pm, self.ratio)
         
