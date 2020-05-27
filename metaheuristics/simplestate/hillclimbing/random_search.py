@@ -22,8 +22,6 @@ class RandomSearch(Algorithm):
 
             if self.best_solution.fitness == obj_knapsack.optimal_know:
                 self.successfull = True
-            
-            self.efos += 1
 
     def __str__(self):
         return "Random search"

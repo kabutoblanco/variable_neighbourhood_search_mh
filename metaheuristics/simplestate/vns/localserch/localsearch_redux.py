@@ -6,7 +6,7 @@ import copy
 class LocalsearchRedux(Localsearch):
 
     def execute(self, obj_neighborhood):
-        s = copy.deepcopy(self.solution)
+        s = self.solution.copy()
 
         #  Selección aleatoria (S’) del vecindario actual (Nk) de S
         obj_neighborhood.execute(s)

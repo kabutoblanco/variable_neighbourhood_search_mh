@@ -3,7 +3,7 @@ from abc import ABC
 class Algorithm(ABC):
     def __init__(self):
         self.efos = 0
-        self.max_efos = 10
+        self.max_efos = 100
         self.successfull = False
         self.best_solution = None
 

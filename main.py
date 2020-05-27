@@ -9,6 +9,7 @@ from data.export import Export
 import copy
 import math
 import random
+from time import time
 
 def main():
     ITER_MAX = 30
@@ -25,31 +26,35 @@ def main():
         k = Knapsack(name_file)
         hcc = HillclimbingClassic()
         hcm = RandomSearch()
-        vns = VNS(random.randint(2, int(math.log(k.total_items) + 1)))
+        k_max = int(math.sqrt(k.total_items))
+        vns = VNS(k_max)
+        print(vns.k_max)
         algorithms = []        
         algorithms.append(hcm)
         algorithms.append(hcc)   
         algorithms.append(vns)             
-        hcm.max_efos = 1000    
-        hcc.max_efos = 1000            
-        vns.max_efos = 1000
+        hcm.max_efos = 500  
+        hcc.max_efos = 500           
+        vns.max_efos = 500
         information = [0] * 2
         sublist_statistics = [0] * len(algorithms)
         print(name_file)
         j = 0
         for algorithm in algorithms:
             vector = []
-            successfull_count = 0            
+            successfull_count = 0  
+            start_time = time()          
             for l in range(ITER_MAX):
                 algorithm.execute(k, None)
                 vector.append(algorithm.best_solution.fitness)
                 successfull_count += 1 if algorithm.successfull else 0
+            end_time = time()
             information[0] = algorithm.__str__()
             information[1] = vector
             statistics.set_vector(information)
             statistics.successfull_count = successfull_count
             sublist_statistics[j] = copy.deepcopy(statistics)
-            print(algorithm)
+            print("{}s\t\t{}".format(round(end_time - start_time, 3), algorithm))
             j += 1
         list_statistics.append(copy.deepcopy(sublist_statistics)) 
     e.writeCSV()
