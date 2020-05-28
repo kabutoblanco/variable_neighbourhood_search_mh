@@ -6,10 +6,12 @@ class Neighborhood:
         self.neighborhood = []
 
     def execute(self, s):
-        for i in range(0, self.size):
+        i = 0
+        while i < self.size and s.obj_algorithm.efos < s.obj_algorithm.max_efos:
             r = s.copy()
             r.tweak(self.pm, self.dh)
             self.neighborhood.append(r)
+            i += 1
 
     def best_neighbors(self):
         best = self.neighborhood[0]

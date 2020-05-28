@@ -28,7 +28,6 @@ def main():
         hcm = RandomSearch()
         k_max = int(math.sqrt(k.total_items))
         vns = VNS(k_max)
-        print(vns.k_max)
         algorithms = []        
         algorithms.append(hcm)
         algorithms.append(hcc)   

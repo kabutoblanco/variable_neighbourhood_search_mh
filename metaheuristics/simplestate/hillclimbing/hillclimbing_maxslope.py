@@ -2,7 +2,6 @@ from ..algorithm import Algorithm
 from ...solution import Solution
 
 import random
-from time import time
 
 class HillclimbingMaxslope(Algorithm):
     def __init__(self):
@@ -12,7 +11,6 @@ class HillclimbingMaxslope(Algorithm):
         self.neighborhood = 5
 
     def execute(self, obj_knapsack, obj_solution):
-        start_time = time()
         self.efos = 0
 
         if not obj_solution:
@@ -21,7 +19,7 @@ class HillclimbingMaxslope(Algorithm):
         else:
             s = obj_solution.copy()
 
-        while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know and time() - start_time < 0.5:
+        while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know:
             r = s.copy()
             r.tweak(self.pm, self.ratio)
 
