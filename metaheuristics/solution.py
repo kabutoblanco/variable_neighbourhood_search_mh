@@ -12,7 +12,9 @@ class Solution:
     
     def copy(self):
         clone = copy.copy(self)
+        clone.fitness = copy.copy(self.fitness)        
         clone.dimensions = copy.copy(self.dimensions)
+        clone.weight = copy.copy(self.weight)
         return clone
 
     def get_solution(self):
@@ -37,14 +39,16 @@ class Solution:
         dimensions = copy.copy(self.dimensions)
 
         while len(checks) < dh:
-            if random.random() < pm:
-                index = random.randint(0, len(self.dimensions) - 1)
+            index = random.randint(0, len(self.dimensions) - 1)
+            if random.random() < pm:                
                 if index not in checks:
                     self.dimensions[index] = int(not self.dimensions[index])
                     checks.append(index)
                     if self.dimensions[index] == 1:
                         self.weight += self.obj_knapsack.get_weight(index)
                         weight = copy.copy(self.weight)
+                        if self.weight == self.obj_knapsack.capacity:
+                            break
                         if self.weight > self.obj_knapsack.capacity:
                             self.dimensions[index] = 0
                             self.weight -= self.obj_knapsack.get_weight(index)                            

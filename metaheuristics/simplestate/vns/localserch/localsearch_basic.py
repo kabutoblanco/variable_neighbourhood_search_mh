@@ -1,5 +1,6 @@
 from .localsearch import Localsearch
 from ....solution import Solution
+
 import random
 import copy
 
@@ -9,6 +10,8 @@ class LocalsearchBasic(Localsearch):
         s = self.solution.copy()
         
         #  Selección aleatoria (S’) del vecindario actual (Nk) de S
+        change = random.randint(0, 1)
+        obj_neighborhood.dh += change
         obj_neighborhood.execute(s)
         rand_index = random.randint(0, len(obj_neighborhood.neighborhood) - 1)
         

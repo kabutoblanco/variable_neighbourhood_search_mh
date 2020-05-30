@@ -11,7 +11,7 @@ class Neighborhood:
             r = s.copy()
             r.tweak(self.pm, self.dh)
             self.neighborhood.append(r)
-            i += 1
+            i += 1            
 
     def best_neighbors(self):
         best = self.neighborhood[0]
@@ -21,3 +21,6 @@ class Neighborhood:
                 best = neighbor.copy()
         
         return best
+
+    def __str__(self):
+        return str(self.dh)

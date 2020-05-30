@@ -29,16 +29,20 @@ class VNS(Algorithm):
         
         # for dh in sorted(checks):
         #     self.neighborhoods.append(Neighborhood(random.random(), dh, 100))
-        
-        for i in range(self.k_max):
-            self.neighborhoods.append(Neighborhood(0.5, i, 100))
+        aux = []
+        for i in range(1, self.k_max + 1):
+            neighborhood = Neighborhood(random.uniform(0.1, 0.9), int(i * math.log10(obj_knapsack.total_items) + random.uniform(0.5, 0.9)), random.randint(50, 100))
+            self.neighborhoods.append(neighborhood)
+            aux.append(neighborhood.dh)
+
+        print(aux)
 
         s = Solution(obj_knapsack, self)
         s.get_solution()
 
         k = 0
         while k < self.k_max and self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know:
-            obj_searchlocal = LocalsearchDesc(s, HillclimbingClassic())
+            obj_searchlocal = LocalsearchDesc(s, HillclimbingMaxslope())
             s_prima2 = obj_searchlocal.execute(self.neighborhoods[k])
             
             if s_prima2.fitness > s.fitness:

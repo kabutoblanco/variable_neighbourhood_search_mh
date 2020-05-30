@@ -15,8 +15,7 @@ def main():
     ITER_MAX = 30
     list_statistics = []
     e = Export(list_statistics)
-    for i in range(1, 17):
-        random.seed(i)
+    for i in range(1, 17):        
         name_file = ""
         if i < 11:
             name_file = "./data/files/f{}.txt".format(i)
@@ -26,7 +25,7 @@ def main():
         k = Knapsack(name_file)
         hcc = HillclimbingClassic()
         hcm = RandomSearch()
-        k_max = int(math.sqrt(k.total_items))
+        k_max = int(math.sqrt(k.total_items) + 4)
         vns = VNS(k_max)
         algorithms = []        
         algorithms.append(hcm)
@@ -43,7 +42,8 @@ def main():
             vector = []
             successfull_count = 0  
             start_time = time()          
-            for l in range(ITER_MAX):
+            for l in range(ITER_MAX):  
+                random.seed(l)          
                 algorithm.execute(k, None)
                 vector.append(algorithm.best_solution.fitness)
                 successfull_count += 1 if algorithm.successfull else 0
