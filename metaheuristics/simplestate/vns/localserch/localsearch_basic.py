@@ -10,8 +10,6 @@ class LocalsearchBasic(Localsearch):
         s = self.solution.copy()
         
         #  Selección aleatoria (S’) del vecindario actual (Nk) de S
-        change = random.randint(0, 1)
-        obj_neighborhood.dh += change
         obj_neighborhood.execute(s)
         rand_index = random.randint(0, len(obj_neighborhood.neighborhood) - 1)
         
@@ -21,6 +19,7 @@ class LocalsearchBasic(Localsearch):
         if s.obj_algorithm.max_efos - s.obj_algorithm.efos <= self.algorithm.max_efos:
             self.algorithm.max_efos = s.obj_algorithm.max_efos - s.obj_algorithm.efos
 
+        self.algorithm.ratio = obj_neighborhood.dh
         s_prima.obj_algorithm = self.algorithm
 
         self.algorithm.execute(s.obj_knapsack, s_prima)

@@ -25,8 +25,7 @@ def main():
         k = Knapsack(name_file)
         hcc = HillclimbingClassic()
         hcm = RandomSearch()
-        k_max = int(math.sqrt(k.total_items) + 4)
-        vns = VNS(k_max)
+        vns = VNS(0)
         algorithms = []        
         algorithms.append(hcm)
         algorithms.append(hcc)   
@@ -43,7 +42,9 @@ def main():
             successfull_count = 0  
             start_time = time()          
             for l in range(ITER_MAX):  
-                random.seed(l)          
+                random.seed(l)   
+                k_max = random.randint(4, int(math.sqrt(k.total_items) + 3))
+                vns.k_max = k_max
                 algorithm.execute(k, None)
                 vector.append(algorithm.best_solution.fitness)
                 successfull_count += 1 if algorithm.successfull else 0

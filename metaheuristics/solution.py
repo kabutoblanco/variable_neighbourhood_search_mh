@@ -53,7 +53,7 @@ class Solution:
                             self.dimensions[index] = 0
                             self.weight -= self.obj_knapsack.get_weight(index)                            
                             checks.remove(index)
-                        if weight >= self.obj_knapsack.capacity and 1 not in dimensions:
+                        if weight > self.obj_knapsack.capacity and 1 not in dimensions:
                             break
                     else:
                         self.weight -= self.obj_knapsack.get_weight(index)
