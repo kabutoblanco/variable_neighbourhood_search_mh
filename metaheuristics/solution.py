@@ -12,26 +12,29 @@ class Solution:
     
     def copy(self):
         clone = copy.copy(self)
-        clone.fitness = copy.copy(self.fitness)        
         clone.dimensions = copy.copy(self.dimensions)
-        clone.weight = copy.copy(self.weight)
         return clone
 
     def get_solution(self):
-        while True:
-            index = random.randint(0, len(self.dimensions) - 1)
+        self.dimensions = [0] * self.obj_knapsack.total_items
+        self.weight = 0
+
+        weight = 0
+        checks = []
+
+        while len(checks) < self.obj_knapsack.total_items:
             if random.random() < 0.5:
-                self.dimensions[index] = int(not self.dimensions[index])
-                if self.dimensions[index] == 1:
-                    self.weight += self.obj_knapsack.get_weight(index)
-                    if self.weight == self.obj_knapsack.capacity:
-                        break
-                    if self.weight > self.obj_knapsack.capacity:
-                        self.dimensions[index] = 0
-                        self.weight -= self.obj_knapsack.get_weight(index)
-                        break
-                else:
-                    self.weight -= self.obj_knapsack.get_weight(index)
+                index = random.randint(0, len(self.dimensions) - 1)
+                if index not in checks:
+                    self.dimensions[index] = random.randint(0, 1)
+                    checks.append(index)
+                    if self.dimensions[index] == 1:             
+                        weight += self.obj_knapsack.get_weight(index)
+                        if weight > self.obj_knapsack.capacity:
+                            self.dimensions[index] = 0
+                            break
+                        self.weight += self.obj_knapsack.get_weight(index)
+
         self.evaluate()
 
     def tweak(self, pm, dh):
@@ -39,22 +42,22 @@ class Solution:
         dimensions = copy.copy(self.dimensions)
 
         while len(checks) < dh:
-            index = random.randint(0, len(self.dimensions) - 1)
-            if random.random() < pm:                
+            if random.random() < pm:
+                index = random.randint(0, len(self.dimensions) - 1)
                 if index not in checks:
                     self.dimensions[index] = int(not self.dimensions[index])
                     checks.append(index)
                     if self.dimensions[index] == 1:
                         self.weight += self.obj_knapsack.get_weight(index)
                         weight = copy.copy(self.weight)
-                        if self.weight == self.obj_knapsack.capacity:
-                            break
                         if self.weight > self.obj_knapsack.capacity:
                             self.dimensions[index] = 0
                             self.weight -= self.obj_knapsack.get_weight(index)                            
                             checks.remove(index)
-                        if weight > self.obj_knapsack.capacity and 1 not in dimensions:
+                        if weight == self.obj_knapsack.capacity:
                             break
+                        if weight > self.obj_knapsack.capacity and 1 not in dimensions:
+                            break                        
                     else:
                         self.weight -= self.obj_knapsack.get_weight(index)
                         dimensions[index] = 0
