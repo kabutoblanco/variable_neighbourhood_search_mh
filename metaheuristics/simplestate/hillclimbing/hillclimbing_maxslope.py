@@ -6,7 +6,7 @@ import random
 class HillclimbingMaxslope(Algorithm):
     def __init__(self):
         Algorithm.__init__(self)
-        self.pm = 0.5
+        self.pm = 0.61
         self.ratio = 4
         self.neighborhood = 5
 

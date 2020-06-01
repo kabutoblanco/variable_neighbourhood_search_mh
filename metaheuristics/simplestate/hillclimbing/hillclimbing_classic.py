@@ -7,7 +7,7 @@ import random
 class HillclimbingClassic(Algorithm):
     def __init__(self):
         Algorithm.__init__(self)
-        self.pm = 0.5
+        self.pm = 0.61
         self.ratio = 4
 
     def execute(self, obj_knapsack, obj_solution):

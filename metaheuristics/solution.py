@@ -23,7 +23,7 @@ class Solution:
         checks = []
 
         while len(checks) < self.obj_knapsack.total_items:
-            if random.random() < 0.5:
+            if random.random() < 0.61:
                 index = random.randint(0, len(self.dimensions) - 1)
                 if index not in checks:
                     self.dimensions[index] = random.randint(0, 1)

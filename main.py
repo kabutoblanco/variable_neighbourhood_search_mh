@@ -39,11 +39,11 @@ def main():
         j = 0
         for algorithm in algorithms:
             vector = []
-            successfull_count = 0  
+            successfull_count = 0
             start_time = time()          
             for l in range(ITER_MAX):  
-                random.seed(l)   
-                k_max = random.randint(4, int(math.sqrt(k.total_items) + 3))
+                random.seed(l)                   
+                k_max = random.randint(3, int(math.sqrt(k.total_items) + 2))
                 vns.k_max = k_max
                 algorithm.execute(k, None)
                 vector.append(algorithm.best_solution.fitness)
@@ -54,7 +54,7 @@ def main():
             statistics.set_vector(information)
             statistics.successfull_count = successfull_count
             sublist_statistics[j] = copy.deepcopy(statistics)
-            print("{}s\t\t{}".format(round(end_time - start_time, 3), algorithm))
+            print("{}min\t\t{}".format(round((end_time - start_time) / 60, 3), algorithm))
             j += 1
         list_statistics.append(copy.deepcopy(sublist_statistics)) 
     e.writeCSV()

@@ -10,7 +10,7 @@ class LocalsearchRedux(Localsearch):
 
         #  Selección aleatoria (S’) del vecindario actual (Nk) de S
         obj_neighborhood.execute(s)
-        rand_index = random.randint(0, obj_neighborhood.size - 1)
+        rand_index = random.randint(0, len(obj_neighborhood.neighborhood) - 1)
         s_prima = obj_neighborhood.neighborhood[rand_index]
 
         return s_prima
