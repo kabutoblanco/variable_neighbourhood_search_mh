@@ -20,6 +20,7 @@ class LocalsearchBasic(Localsearch):
             self.algorithm.max_efos = s.obj_algorithm.max_efos - s.obj_algorithm.efos
 
         self.algorithm.ratio = obj_neighborhood.dh
+        self.algorithm.pm = obj_neighborhood.pm
         s_prima.obj_algorithm = self.algorithm
 
         self.algorithm.execute(s.obj_knapsack, s_prima)

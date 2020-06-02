@@ -19,26 +19,30 @@ class VNS(Algorithm):
     def execute(self, obj_knapsack, obj_solution):
         self.efos = 0
 
+        aux = []
         for i in range(0, self.k_max):
             neighborhood = Neighborhood(random.uniform(0.49, 0.61), i + 1, random.randint(4, 50))
+            aux.append(neighborhood.dh)
             self.neighborhoods.append(neighborhood)
+        print(aux)
 
         s = Solution(obj_knapsack, self)
         s.get_solution()
+        while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know: 
+            k = 0
+            while k < self.k_max and self.efos < self.max_efos:
+                obj_searchlocal = LocalsearchBasic(s, HillclimbingMaxslope())
+                s_prima = obj_searchlocal.execute(self.neighborhoods[k])
+                
+                if s_prima.fitness > s.fitness:
+                    s = s_prima
+                    k = 0
+                else:
+                    k += 1
 
-        k = 0
-        while k < self.k_max and self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know:
-            obj_searchlocal = LocalsearchRedux(s, HillclimbingMaxslope())
-            s_prima = obj_searchlocal.execute(self.neighborhoods[k])
-            
-            if s_prima.fitness > s.fitness:
-                s = s_prima
-                k = 0
-            else:
-                k += 1
-
-            if s.fitness == obj_knapsack.optimal_know:
-                self.successfull = True
+                if s.fitness == obj_knapsack.optimal_know:
+                    self.successfull = True
+                    break
             
         self.best_solution = s
 
