@@ -42,8 +42,8 @@ def main():
             successfull_count = 0
             start_time = time()          
             for l in range(ITER_MAX):  
-                random.seed(l * 3)                   
-                k_max = random.randint(int(math.log10(k.total_items) + 2), int(math.log10(k.total_items) + 4))
+                random.seed(l)                   
+                k_max = random.randint(2, int(math.sqrt(k.total_items) + 2))
                 vns.k_max = k_max
                 algorithm.execute(k, None)
                 vector.append(algorithm.best_solution.fitness)

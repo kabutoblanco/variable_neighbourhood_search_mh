@@ -24,7 +24,6 @@ class VNS(Algorithm):
             neighborhood = Neighborhood(random.uniform(0.49, 0.61), i + 1, random.randint(4, 50))
             aux.append(neighborhood.dh)
             self.neighborhoods.append(neighborhood)
-        print(aux)
 
         s = Solution(obj_knapsack, self)
         s.get_solution()
