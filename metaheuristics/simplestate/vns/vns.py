@@ -28,7 +28,7 @@ class VNS(Algorithm):
         while self.efos < self.max_efos and s.fitness != obj_knapsack.optimal_know: 
             k = 0
             while k < self.k_max and self.efos < self.max_efos:
-                obj_searchlocal = LocalsearchBasic(s, HillclimbingMaxslope())
+                obj_searchlocal = LocalsearchRedux(s, HillclimbingMaxslope())
                 s_prima = obj_searchlocal.execute(self.neighborhoods[k])
                 
                 if s_prima.fitness > s.fitness:
