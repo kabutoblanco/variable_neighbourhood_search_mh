@@ -25,29 +25,20 @@ class Statistics:
         return self.successfull_count / self.max_rep * 100
     
     def total_average(self, statistics):
-        ba = [0] * 3
-        hc = [0] * 3
-        vns = [0] * 3 
-        total = len(statistics)
-        for tr in statistics:
-            for st in tr:
-                if(st.algorithm == "Busqueda aleatoria"):
-                    ba[0] += st.average()
-                    ba[1] += st.std()
-                    ba[2] += st.successfull_rate()
-                if(st.algorithm == "Ascenso a la colina"):
-                    hc[0] += st.average()
-                    hc[1] += st.std()
-                    hc[2] += st.successfull_rate()
-                if(st.algorithm == "VNS"):
-                    vns[0] += st.average()
-                    vns[1] += st.std()
-                    vns[2] += st.successfull_rate()
-        for l in range(0,3):
-            ba[l] = ba[l]/total
-            hc[l] = hc[l]/total
-            vns[l] = vns[l]/total
-        return [ba,hc,vns]
+        total = len(statistics)        
+        result = [0] * (3 * len(statistics[0]))
+        for file in statistics:
+            i = 0
+            for algorithm in file:
+                for j in range(3):
+                    if j == 0:                    
+                        result[i] += algorithm.average() / total
+                    if j == 1:
+                        result[i] += algorithm.std() / total
+                    if j == 2:
+                        result[i] += algorithm.successfull_rate() / total
+                    i += 1
+        return result
         
                 
         

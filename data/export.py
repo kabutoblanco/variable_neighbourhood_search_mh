@@ -35,8 +35,7 @@ class Export:
             section.append(vector)
             vector = ["Total"]
         for total in total_average:
-            for t in total:
-                vector.append(str(round(t, 3)))
+            vector.append(str(round(total, 3)))
         section.append(vector)
         
         self.def_name()
@@ -58,15 +57,14 @@ class Export:
         html += "</tr></thead><tbody>"
         for statistics in self.statistics:
             html += "<tr><td>" + statistics[0].name_file + "</td>"
-            for i in range(3):
+            for i in range(len(statistics)):
                 html += "<td class='non-select'><span>" + str(round(statistics[i].average(), 3)) + "</span></td>"
                 html += "<td class='non-select'><span>" + str(round(statistics[i].std(), 3)) + "</span></td>"
                 html += "<td class='non-select'><span>" + str(round(statistics[i].successfull_rate(), 3)) + "</span></td>"
             html += "</tr>"
         html += "<tr><td>" + "TOTAL" + "</td>"
         for total in total_average:
-            for t in total:
-                html += "<td class='non-select special'><span>" + str(round(t, 3)) + "</span></td>"
+            html += "<td class='non-select special'><span>" + str(round(total, 3)) + "</span></td>"
         html += "</tr>"
 
         html += "</tbody></table></div></div></div></body></html>"
