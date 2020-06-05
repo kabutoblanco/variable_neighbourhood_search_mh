@@ -31,11 +31,11 @@ class Statistics:
         total = len(statistics)
         for tr in statistics:
             for st in tr:
-                if(st.algorithm == "Random search"):
+                if(st.algorithm == "Busqueda aleatoria"):
                     ba[0] += st.average()
                     ba[1] += st.std()
                     ba[2] += st.successfull_rate()
-                if(st.algorithm == "MP Clasico"):
+                if(st.algorithm == "Ascenso a la colina"):
                     hc[0] += st.average()
                     hc[1] += st.std()
                     hc[2] += st.successfull_rate()

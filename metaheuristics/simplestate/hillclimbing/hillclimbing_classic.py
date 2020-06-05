@@ -32,4 +32,4 @@ class HillclimbingClassic(Algorithm):
         self.best_solution = s
 
     def __str__(self):
-        return "MP Clasico"
+        return "Ascenso a la colina"

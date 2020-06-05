@@ -24,4 +24,4 @@ class RandomSearch(Algorithm):
                 self.successfull = True
 
     def __str__(self):
-        return "Random search"
+        return "Busqueda aleatoria"

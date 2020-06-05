@@ -42,7 +42,7 @@ def main():
             successfull_count = 0
             start_time = time()          
             for l in range(ITER_MAX):  
-                random.seed(l)                   
+                random.seed(l)
                 k_max = random.randint(2, int(math.log10(k.total_items) + 2)) if k.total_items < 6 else random.randint(3, int(math.log10(k.total_items) + 3))
                 vns.k_max = k_max
                 algorithm.execute(k, None)
