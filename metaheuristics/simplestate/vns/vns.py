@@ -19,10 +19,8 @@ class VNS(Algorithm):
     def execute(self, obj_knapsack, obj_solution):
         self.efos = 0
 
-        aux = []
         for i in range(0, self.k_max):
             neighborhood = Neighborhood(random.uniform(0.49, 0.61), i + 1, random.randint(4, 50))
-            aux.append(neighborhood.dh)
             self.neighborhoods.append(neighborhood)
 
         s = Solution(obj_knapsack, self)
