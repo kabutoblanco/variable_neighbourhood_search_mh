@@ -60,7 +60,7 @@ class Export:
             for i in range(len(statistics)):
                 html += "<td class='non-select'><span>" + str(round(statistics[i].average(), 3)) + "</span></td>"
                 html += "<td class='non-select'><span>" + str(round(statistics[i].std(), 3)) + "</span></td>"
-                html += "<td class='non-select'><span>" + str(round(statistics[i].successfull_rate(), 3)) + "</span></td>"
+                html += "<td class='non-select" + (" success'" if int(statistics[i].successfull_rate()) == 100 else "") + "'><span>" + str(round(statistics[i].successfull_rate(), 3)) + "</span></td>"
             html += "</tr>"
         html += "<tr><td>" + "TOTAL" + "</td>"
         for total in total_average:
